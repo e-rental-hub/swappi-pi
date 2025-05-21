@@ -15,7 +15,7 @@ import { onIncompletePaymentFound } from '@/config/payment';
 import { AuthResult } from '@/constants/pi';
 import { IUser } from '@/constants/types';
 
-import logger from '../logger.config.mjs';
+// import console from '../console.config.mjs';
 
 interface IAppContextProps {
   currentUser: IUser | null;
@@ -69,7 +69,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   };
 
   const registerUser = async () => {
-    logger.info('Initializing Pi SDK for user registration.');
+    console.info('Initializing Pi SDK for user registration.');
     await Pi.init({ version: '2.0', sandbox: process.env.NODE_ENV === 'development' });
     let isInitiated = Pi.initialized;
 
@@ -93,49 +93,49 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         if (res.status === 200) {
           setAuthToken(res.data?.token);
           setCurrentUser(res.data.user);
-          logger.info('User authenticated successfully.');
+          console.info('User authenticated successfully.');
           setTimeout(() => {
             setIsSigningInUser(false); // hide the splash screen after the delay
           }, 2500);
         } else if (res.status === 500) {
           setCurrentUser(null);
-          logger.error('User authentication failed.');
+          console.error('User authentication failed.');
           setIsSigningInUser(false);
         }        
       } catch (error) {
-        logger.error('Error during user registration:', error);
+        console.error('Error during user registration:', error);
         setIsSigningInUser(false);
       }
     } else {
-      logger.error('PI SDK failed to initialize.');
+      console.error('PI SDK failed to initialize.');
     }
   };
 
   const autoLoginUser = async () => {
-    logger.info('Attempting to auto-login user.');
+    console.info('Attempting to auto-login user.');
     try {
       setIsSigningInUser(true);
       const res = await axiosClient.get('/users/me');
 
       if (res.status === 200) {
-        logger.info('Auto-login successful.');
+        console.info('Auto-login successful.');
         setCurrentUser(res.data);
         setTimeout(() => {
           setIsSigningInUser(false); // hide the splash screen after the delay
         }, 2500);
       } else {
         setCurrentUser(null);
-        logger.warn('Auto-login failed.');
+        console.warn('Auto-login failed.');
         setIsSigningInUser(false);
       }
     } catch (error) {
-      logger.error('Auto login unresolved; attempting Pi SDK authentication:', error);
+      console.error('Auto login unresolved; attempting Pi SDK authentication:', error);
       await registerUser();
     }
   }
 
   useEffect(() => {
-    logger.info('AppContextProvider mounted.');
+    console.info('AppContextProvider mounted.');
     if (!currentUser) {
       registerUser();
     } else {

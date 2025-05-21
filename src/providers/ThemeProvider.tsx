@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 type Theme = "dark" | "light";
 
@@ -20,32 +21,32 @@ export function ThemeProvider({
   children,
   defaultTheme = "dark",
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem("theme") as Theme) || defaultTheme
-  );
+  const [theme, setThemeState] = useState<Theme>(defaultTheme);
 
+  // On mount, sync theme from cookies
   useEffect(() => {
-    const root = window.document.documentElement;
-    
-    // Remove the previous theme class
+    const cookieTheme = Cookies.get("theme") as Theme | undefined;
+    if (cookieTheme === "light" || cookieTheme === "dark") {
+      setThemeState(cookieTheme);
+    }
+  }, []);
+
+  // Apply theme and persist to cookies
+  useEffect(() => {
+    const root = document.documentElement;
+
     root.classList.remove("dark", "light");
-    
-    // Add the current theme class
     root.classList.add(theme);
-    
-    // Save the theme in localStorage for persistence
-    localStorage.setItem("theme", theme);
+
+    Cookies.set("theme", theme, { expires: 365 });
   }, [theme]);
 
-  const value = {
-    theme,
-    setTheme: (theme: Theme) => {
-      setTheme(theme);
-    },
+  const setTheme = (newTheme: Theme) => {
+    setThemeState(newTheme);
   };
 
   return (
-    <ThemeContext.Provider value={value}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -53,10 +54,10 @@ export function ThemeProvider({
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  
-  if (context === undefined) {
+
+  if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
-  
+
   return context;
 };

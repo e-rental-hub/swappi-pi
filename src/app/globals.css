@@ -105,6 +105,42 @@
   .tab-button.inactive {
     @apply text-muted-foreground;
   }
+  
+  .option-card {
+    @apply flex items-center justify-between p-3 rounded-md bg-card mb-3 border border-border;
+  }
+
+  .payment-option {
+    @apply flex items-center gap-3;
+  }
+  
+  .payment-icon {
+    @apply w-5 h-5 rounded-full flex items-center justify-center text-white text-xs;
+  }
+  
+  .progress-step {
+    @apply flex flex-col items-center;
+  }
+  
+  .progress-line {
+    @apply flex-1 h-[1px] bg-muted;
+  }
+  
+  .progress-dot {
+    @apply w-2 h-2 rounded-full bg-muted-foreground;
+  }
+  
+  .progress-dot.active {
+    @apply bg-pi;
+  }
+  
+  .trade-value {
+    @apply text-foreground font-medium;
+  }
+  
+  .trade-label {
+    @apply text-muted-foreground text-sm;
+  }
 }
 
 #root {

@@ -1,0 +1,71 @@
+Privacy Policy
+Last Updated: [29 May 2025]
+Contact Email: [haycoder24@gmail.com]
+
+Introduction
+Welcome to the Xchange Pi app, a peer-to-peer platform for the Pi Ecosystem that enables users (“Pioneers”) to swap FIAT currency (Naira) for Pi Network Coin. This Privacy Policy explains how we collect, use, share, and protect your personal information when you use our services.
+
+Information We Collect
+User Information
+
+When you register or use the app, we may collect your username, user ID, and Pi wallet address from Pi Network.
+We may collect device information (such as device type, operating system, and unique identifiers).
+Order and Transaction Information
+
+When you create or participate in Buy or Sell Orders, we collect order details, transaction amounts, payment methods, and related information.
+Usage Data
+
+We collect analytics and usage data to improve app performance and user experience.
+How We Use Your Information
+To provide, operate, and maintain the Xchange Pi app and its features.
+To facilitate express swaps and peer-to-peer trades between Pioneers.
+To communicate with you regarding your account, orders, ads and important updates.
+To analyze usage and improve the app’s security, reliability, and features.
+To comply with legal requirements and protect the integrity of the Pi Ecosystem.
+Sharing Your Information
+With Counterparties: Order and contact information may be shared with other users involved in a trade for fulfillment and communication.
+With Service Providers: We may share information with third-party providers for payment processing, analytics, and technical support.
+Legal Compliance: We may disclose information if required by law or to protect the rights and safety of users and the Pi Ecosystem.
+Security
+We use industry-standard security measures to safeguard your data. However, no method of transmission or storage is completely secure.
+
+Your Choices
+You may update your account information in the app settings.
+You may delete your Xchange Pi account by deleting your Pi Network account and choosing to remove your Xchange Pi data upon next access.
+You may opt out of non-essential communications.
+Changes to This Policy
+We may update this Privacy Policy as needed. The latest version will always be available in the app or on our website.
+
+Contact Us
+For questions or concerns, contact us at [haycoder24@gmail.com].
+
+Terms of Service
+Last Updated: [29 May 2025]
+Contact Email: [haycoder24@gmail.com]
+
+Acceptance of Terms
+By using the Xchange Pi app, you agree to these Terms of Service and our Privacy Policy. If you do not agree, please do not use the app.
+
+Eligibility and Use
+You must be a registered Pi Network Pioneer to use Xchange Pi.
+You agree to use the app only for lawful purposes and in accordance with Pi Network guidelines.
+You are responsible for maintaining the confidentiality of your account and for all activities under your account.
+Platform Functionality
+You will be required to fund in app wallet from the Pioneer mainnet wallet balance before sell ads can be created. 
+Xchange Pi enables users to create Buy and Sell Orders for Pi Coin and FIAT based on in app wallet balances.
+All trades are peer-to-peer and subject to availability, user agreement and confirmations between trading parties.
+Express swap and order creation features are provided as-is and may be updated or modified at any time.
+Intellectual Property
+All content, features, and functionality of Xchange Pi are owned by the Xchange Pi team and protected by applicable intellectual property laws.
+
+Limitation of Liability
+Xchange Pi is not liable for any direct, indirect, incidental, or consequential damages arising from your use of the app, including but not limited to losses from trades or technical issues.
+
+Indemnification
+You agree to indemnify and hold harmless Xchange Pi, its team, affiliates, and partners from any claims, damages, or expenses arising from your use of the app or violation of these terms.
+
+Governing Law
+These Terms are governed by the laws of England and Nigeria, including any disputes arising from their subject matter or formation.
+
+Changes to Terms
+We may update these Terms of Service at any time. The latest version will be posted in the app or on our website.

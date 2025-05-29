@@ -1,53 +1,122 @@
 
+/**
+ * TypeScript type definitions
+ */
 
-
-export interface Agent {
+// User related types
+export interface User {
   id: string;
-  user_id: string;
-  created_at: string;
-  updated_at: string;
-  company_name: string;
-  description: string;
-  license_number: string;
-  experience_years: number;
-  specializations: string[];
-  areas_served: string[];
-  average_rating: number;
-  profile: Profile;
+  username: string;
+  email: string;
+  profileImage?: string;
+  completionRate?: string;
+  averageResponseTime?: number;
+  createdAt: Date;
+  isVerified: boolean;
+  tradeCount?: number;
+  paymentMethod: PaymentMethod[];
+  country?: string;
+  piBalance: number;
 }
 
-export interface Property {
+export interface Transaction {
   id: string;
-  created_at: string;
-  updated_at: string;
-  title: string;
-  type: 'house' | 'apartment' | 'land' | 'office' | 'shop';
+  userId: string;
+  type: TransactionType;
+  amount: string;
+  memo: string;
+  paymentId: string;
+  txid: string;
+  status: TransactionStatus;
+  walletAddress: string;
+  previousBalance: number;
+  currentBalance:number;
+  createdAt: Date;
+}
+
+// Trade and Order types
+export type TransactionType = "Deposit" | "Withdraw";
+export type TransactionStatus = "Successful" | "Cancelled" | "Pending";
+export type OrderType = "Buy" | "Sell";
+export type OrderStatus = "Created"| "Completed" | "Processing" | "Cancelled";
+
+export interface Trade {
+  id: string;
+  userId: string;
+  type: OrderType;
+  quantity: string;
+  totalAmount: string
+  priceType: PriceType;
+  price: string;
+  total: string;
+  status: OrderStatus;
+  date: Date;
+  currency: string;
+  fiatCurrency: string;
+  paymentMethod: string;
+  tradeTerms?: string;
+  limits?: {
+    min: number;
+    max: number;
+  };
+}
+export interface Order {
+  id: string;
+  orderId: string;
+  userId: string;
+  counterpartyId: string;
+  totalAmount: string;
+  quanrity: number;
   price: number;
-  location: string;
-  city: string;
-  state: string;
-  beds: number | null;
-  baths: number | null;
-  area: number | null;
-  image_url: string;
-  featured: boolean;
-  for_sale: boolean;
-  for_rent: boolean;
-  description: string;
-  amenities: string[];
-  agent_id: string;
-  latitude: number;
-  longitude: number;
+  status: OrderStatus;
+  date: Date;
+}
+// Payment related types (e.g Bank Transafer, Cash)
+export interface PaymentMethod {
+  id: string;
+  name: string;
+  color: string;
+  available: boolean;
 }
 
-export interface Inquiry {
-  id: string;
-  created_at: string;
-  user_id: string;
-  property_id: string;
-  agent_id: string;
-  message: string;
-  status: 'pending' | 'responded' | 'closed';
-  property: Property;
-  user: Profile;
+// Trading restrictions and settings
+export interface TradingRestrictions {
+  userId: string;
+  paymentTime: string;
+  rankLimit: string;
+  registrationDays: string;
+  specificCountry: string;
+  tradeRange: string;
+  maxOrdersPerUser: string;
 }
+
+// Application component-specific types
+export type OrderTab = "all" | "buy" | "sell";
+export type TradeMode = "Buy" | "Sell";
+export type PriceType = "Fixed" | "Floating";
+
+// Notification types
+export interface Notification {
+  id: string;
+  type: "success" | "warning" | "error" | "info";
+  title: string;
+  message: string;
+  read: boolean;
+  date: Date;
+}
+
+// export interface CurrencyInfo {
+//   code: string;
+//   name: string;
+//   icon: string;
+//   balance?: string;
+//   price?: string;
+// }
+
+// // Response types for API calls
+// export interface ApiResponse<T> {
+//   success: boolean;
+//   data?: T;
+//   error?: string;
+//   message?: string;
+// }

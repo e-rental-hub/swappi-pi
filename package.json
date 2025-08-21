@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
-    "@pinetwork-js/sdk": "^0.7.0",
+    "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-avatar": "^1.1.9",
     "@radix-ui/react-checkbox": "^1.3.2",
     "@radix-ui/react-dialog": "^1.1.13",
@@ -32,6 +32,7 @@
     "class-variance-authority": "^0.7.1",
     "dayjs": "^1.11.13",
     "js-cookie": "^3.0.5",
+    "loglevel": "^1.9.1",
     "lucide-react": "^0.510.0",
     "next": "^15.3.2",
     "react": "^19.0.0",

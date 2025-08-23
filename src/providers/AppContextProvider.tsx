@@ -157,6 +157,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
       } else {
         logger.warn('Auto-login failed.');
         setCurrentUser(null);
+        await registerUser(); // attempt Pi SDK auth if auto-login fails
       }
     } catch (error) {
       logger.error('Auto login unresolved; attempting Pi SDK authentication:', error);

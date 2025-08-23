@@ -10,7 +10,7 @@ export default function Layout({
   return (
     <div>
       <Header 
-        title={"Xchange-Pi"} 
+        title={"Pay Pi"} 
         showBackButton={false}
         rightContent={true}
       />

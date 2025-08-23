@@ -10,8 +10,8 @@ import { Toaster } from "@/components/ui/toaster";
 const lato = Lato({ weight: '400', subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
-  title: "Xchange Pi",
-  description: "swap ypur local currency for Pi Network coins",
+  title: "Pay Pi",
+  description: "swap ypur local currency for Pi coins",
 };
 
 export default function RootLayout({

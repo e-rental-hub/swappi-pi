@@ -1,8 +1,8 @@
 {
-  "name": "xchange-pi-frontend",
+  "name": "paypi-frontend",
   "version": "0.1.0",
-  "author": "Xchange Pi Team",
-  "description": "Xchange Pi is a decentralized exchange platform that allows users to trade Pi Network tokens securely and efficiently.",
+  "author": "Pay Pi Team",
+  "description": "Pay Pi is a decentralized exchange platform that allows users to trade Pi Network tokens securely and efficiently.",
   "license": "PiOS",
   "keywords": [],
   "private": true,

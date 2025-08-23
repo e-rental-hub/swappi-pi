@@ -12,9 +12,20 @@ import {
 } from "lucide-react";
 import { Tabs } from "@/components/Tabs";
 import { useState } from "react";
+import { PaymentManagement } from "@/components/PaymentManagement";
+import { Header } from "@/components/Header";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Trade");
+  const [showPaymentManagement, setShowPaymentManagement] = useState(false);
+
+  if (showPaymentManagement) {
+    return (
+      <div>
+        <PaymentManagement onBack={() => setShowPaymentManagement(false)} />
+      </div>
+    );
+  }
   
   return (
     <div>
@@ -85,7 +96,7 @@ export default function Profile() {
         
         {/* Navigation Tabs */}
         <Tabs 
-          tabs={["Trade", "Notifications", "Others"]}
+          tabs={["Trade", "Notifications", "Pi Deposit"]}
           activeTab={activeTab}
           onChange={setActiveTab}
         />
@@ -95,6 +106,7 @@ export default function Profile() {
           <ProfileMenuItem 
             icon={<Settings size={18} />} 
             label="Payment Management"
+            onClick={() => setShowPaymentManagement(true)}
           />
           <ProfileMenuItem 
             icon={<Settings size={18} />} 
@@ -126,8 +138,11 @@ const Info = ({ size }: { size: number }) => (
   </svg>
 );
 
-const ProfileMenuItem = ({ icon, label }: { icon: React.ReactNode, label: string }) => (
-  <div className="flex items-center justify-between p-4 border-t border-border">
+const ProfileMenuItem = ({ icon, label, onClick }: { icon: React.ReactNode, label: string, onClick?: () => void }) => (
+  <div 
+    className="flex items-center justify-between p-4 border-t border-border cursor-pointer hover:bg-accent/50 transition-colors"
+    onClick={onClick}
+  >
     <div className="flex items-center">
       <div className="mr-3 text-muted-foreground">{icon}</div>
       <span>{label}</span>

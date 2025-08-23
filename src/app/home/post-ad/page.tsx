@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,11 +8,19 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { CurrencySelector } from "@/components/CurrencySelector";
 import { Info } from "lucide-react";
+import { AppContext } from "@/providers/AppContextProvider";
+import { TradeModeEnum } from "@/types/TradeModeEnum";
 
 export default function PostAd() {
   const { toast } = useToast();
+  const { currentUser,  } = useContext(AppContext);
   const [adType, setAdType] = useState("Sell");
   const [priceType, setPriceType] = useState("Fixed");
+  const [loading, setLoading] = useState(true);
+
+  if (loading) {
+    return <div className="text-center p-4">Loading..</div>;
+  }
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,14 +58,16 @@ export default function PostAd() {
             <Label className="text-sm text-muted-foreground mb-1 block">Currency</Label>
             <CurrencySelector 
               currency="PI"
-              icon={<div className="w-5 h-5 rounded-full bg-pi text-white flex items-center justify-center text-xs">π</div>}
+              icon={"π"}
+              tradeMode={TradeModeEnum.Sell}
             />
           </div>
           <div>
             <Label className="text-sm text-muted-foreground mb-1 block">Fiat</Label>
             <CurrencySelector 
               currency="NGN"
-              icon={<div className="w-5 h-5 rounded-full bg-green-700 text-white flex items-center justify-center text-xs">₦</div>}
+              icon={"₦"}
+              tradeMode={TradeModeEnum.Buy}
             />
           </div>
         </div>

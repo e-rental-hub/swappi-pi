@@ -1,13 +1,12 @@
 'use client';
 
 import { useState } from "react";
-import { TradeListItem } from "@/components/TradeListItem";
 import { Tabs } from "@/components/Tabs";
-import { CurrencySelector } from "@/components/CurrencySelector";
-import { Filter, RefreshCcw } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import Popup from "@/components/Popup";
+import ExpressTrading from "@/components/Express";
+import P2PTrading from "@/components/P2P";
+import { TradeModeEnum } from "@/types/TradeModeEnum";
 
 // Mock data for the trade list
 const mockTrades = [
@@ -51,8 +50,9 @@ const mockTrades = [
 
 export default function Index() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("P2P");
-  const [tradeMode, setTradeMode] = useState("Buy");
+  const [activeTab, setActiveTab] = useState("Express");
+  const [tradeMode, setTradeMode] = useState<TradeModeEnum>(TradeModeEnum.Buy);
+  const [togglePopup, setTogglePopup] = useState<boolean>(false)
   
   return (
     <div>
@@ -60,75 +60,37 @@ export default function Index() {
         {/* Tab Navigation */}
         <div className="mb-4">
           <Tabs 
-            tabs={["Express", "P2P", "Debit/Credit Card", "Bank"]}
+            tabs={["Express", "P2P"]}
             activeTab={activeTab}
             onChange={setActiveTab}
           />
         </div>
         
         {/* Buy/Sell Toggle */}
-        <div className="flex mb-4 bg-secondary rounded-full p-1">
+        <div className="flex mb-4 bg-secondary rounded-full p-1 w-1/3">
           <button 
             className={`flex-1 py-2 rounded-full text-sm font-medium ${tradeMode === "Buy" ? "bg-pi text-white" : ""}`}
-            onClick={() => setTradeMode("Buy")}
+            onClick={() => setTradeMode(TradeModeEnum.Buy)}
           >
             Buy
           </button>
           <button 
-            className={`flex-1 py-2 rounded-full text-sm font-medium ${tradeMode === "Sell" ? "bg-pi text-white" : ""}`}
-            onClick={() => setTradeMode("Sell")}
+            className={`flex-1 py-2 rounded-full text-sm font-medium ${tradeMode === "Sell" ? "bg-red-500 text-white" : ""}`}
+            onClick={() => setTradeMode(TradeModeEnum.Sell)}
           >
             Sell
           </button>
         </div>
+        {activeTab==="Express" ? 
+        <ExpressTrading tradeMode={tradeMode} /> : <P2PTrading tradeMode={tradeMode}  />
         
-        {/* Currency and Filter Options */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <CurrencySelector 
-              currency="PI"
-              icon={<div className="w-5 h-5 rounded-full bg-pi text-white flex items-center justify-center text-xs">π</div>}
-            />
-            <span className="mx-1">→</span>
-            <CurrencySelector 
-              currency="NGN"
-              icon={<div className="w-5 h-5 rounded-full bg-green-700 text-white flex items-center justify-center text-xs">₦</div>}
-            />
-          </div>
-          
-          <Button variant="outline" size="icon" className="bg-card border-border">
-            <Filter size={18} />
-          </Button>
-        </div>
-        
-        {/* Search Input */}
-        <div className="mb-4">
-          <Input placeholder="Search merchants..." className="input-dark" />
-        </div>
-        
-        {/* Trade List */}
-        <div className="mt-4">
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-lg font-medium">Available Offers</h2>
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
-              <RefreshCcw size={16} className="mr-1" /> Refresh
-            </Button>
-          </div>
-          
-          {mockTrades.map((trade) => (
-            <TradeListItem
-              key={trade.id}
-              merchant={trade.merchant}
-              price={trade.price}
-              quantity={trade.quantity}
-              completionRate={trade.completionRate}
-              avgTime={trade.avgTime}
-              isVerified={trade.isVerified}
-              onBuyClick={() => router.push(`/trade/${trade.id}`)}
-            />
-          ))}
-        </div>
+      }
       </div>
+      <Popup header="Filter" toggle={togglePopup} setToggle={setTogglePopup} useMask={true}>
+        <div>
+
+        </div>
+      </Popup>
     </div>
   );
 }

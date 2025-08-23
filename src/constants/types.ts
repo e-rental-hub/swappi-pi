@@ -1,7 +1,7 @@
 export interface IUser {
-  pi_uid: string;
-  pi_username: string;
-  user_name: string;
+  uid: string;
+  username: string;
+  roles: string
 }
 
 export interface IUserSettings {
@@ -141,17 +141,14 @@ export type OrderPaymentMetadataType = {
   buyer_fulfillment_description: string
 }
 
-type MembershipPaymentMetadataType = {
-  membership_id: string
-}
-
 export type PaymentDataType = {
   amount: number;
   memo: string;
   metadata: {
-    payment_type: PaymentType,
-    OrderPayment?: OrderPaymentMetadataType,
-    MembershipPayment?: MembershipPaymentMetadataType
+    trade_mode: string,
+    trade_type: string, 
+    payment_account: string,
+    wallet_address: string
   }
 }
 
@@ -169,6 +166,7 @@ export interface PaymentDTO {
     cancelled: boolean,
     user_cancelled: boolean,
   },
+  from_address: string,
   to_address: string,
   transaction: null | {
     txid: string,

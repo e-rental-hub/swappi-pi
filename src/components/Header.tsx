@@ -18,7 +18,7 @@ export function Header({
   const router = useRouter();
 
   const handleBack = () => {
-    router.back();
+    router.push("/home");
   };
 
   return (

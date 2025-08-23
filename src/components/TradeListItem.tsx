@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { VerifiedBadge } from "./VerifiedBadge";
+import { TradeModeEnum } from "@/types/TradeModeEnum";
 
 interface TradeListItemProps {
   merchant?: string;
@@ -11,6 +12,7 @@ interface TradeListItemProps {
   avgTime?: string;
   paymentMethod?: string;
   isVerified?: boolean;
+  tradeMode?: TradeModeEnum;
   onBuyClick?: () => void;
   
   // For Orders component
@@ -30,6 +32,7 @@ export function TradeListItem({
   avgTime,
   paymentMethod = "Bank Transfer",
   isVerified = false,
+  tradeMode = TradeModeEnum.Buy,
   onBuyClick,
   
   // Order-specific props
@@ -93,9 +96,14 @@ export function TradeListItem({
           
           <div className="flex justify-between items-baseline mb-1">
             <span className="text-xl font-bold">{price}</span>
-            <Button className="bg-pi hover:bg-pi/90 text-white" onClick={onBuyClick}>
-              Buy
-            </Button>
+            {tradeMode === TradeModeEnum.Buy ? 
+              <Button className="bg-buy hover:bg-buy/90 text-white" onClick={onBuyClick}>
+                Buy
+              </Button> : 
+              <Button className="bg-sell hover:bg-sell/90 text-white" onClick={onBuyClick}>
+                Sell
+              </Button>
+            }
           </div>
           
           <div className="text-sm text-muted-foreground mb-1">

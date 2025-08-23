@@ -54,6 +54,8 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				pi: '#00C853',
+				buy: '#00C853',
+				sell: '#FF1744',
 				naira: '#0F9D58',
 				usdt: '#26A17B',
 				action: '#FF6B6B',

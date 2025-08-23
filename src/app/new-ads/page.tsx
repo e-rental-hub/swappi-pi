@@ -9,10 +9,11 @@ import { useToast } from "@/components/ui/use-toast";
 import { CurrencySelector } from "@/components/CurrencySelector";
 import { Info, CheckCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { TradeModeEnum } from "@/types/TradeModeEnum";
 
 export default function PostAd() {
   const { toast } = useToast();
-  const [adType, setAdType] = useState("Sell");
+  const [adType, setAdType] = useState(TradeModeEnum.Sell);
   const [priceType, setPriceType] = useState("Fixed");
   const [step, setStep] = useState(1);
   const [selectedCurrency, setSelectedCurrency] = useState("USDT");
@@ -65,13 +66,13 @@ export default function PostAd() {
         <div className="grid grid-cols-2 gap-4 mb-4">
           <Button 
             className={`${adType === "Buy" ? "bg-secondary text-foreground" : "bg-background text-muted-foreground"} border border-border rounded-full`}
-            onClick={() => setAdType("Buy")}
+            onClick={() => setAdType(TradeModeEnum.Buy)}
           >
             Buy
           </Button>
           <Button 
             className={`${adType === "Sell" ? "bg-action text-white" : "bg-background text-muted-foreground"} border border-border rounded-full`}
-            onClick={() => setAdType("Sell")}
+            onClick={() => setAdType(TradeModeEnum.Sell)}
           >
             Sell
           </Button>
@@ -83,14 +84,16 @@ export default function PostAd() {
             <Label className="text-sm text-muted-foreground mb-1 block">Currency</Label>
             <CurrencySelector 
               currency="USDT"
-              icon={<div className="w-5 h-5 rounded-full bg-usdt text-white flex items-center justify-center text-xs">T</div>}
+              icon={"T"}
+              tradeMode={adType}
             />
           </div>
           <div>
             <Label className="text-sm text-muted-foreground mb-1 block">Fiat</Label>
             <CurrencySelector 
               currency="NGN"
-              icon={<div className="w-5 h-5 rounded-full bg-naira text-white flex items-center justify-center text-xs">₦</div>}
+              icon={"₦"}
+              tradeMode={adType}
             />
           </div>
         </div>

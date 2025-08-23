@@ -4,6 +4,8 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import AppContextProvider from "@/providers/AppContextProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const lato = Lato({ weight: '400', subsets: ['latin'], display: 'swap' });
 
@@ -30,10 +32,13 @@ export default function RootLayout({
       >
         <div className="flex flex-col min-h-screen max-w-[760px] mx-auto bg-background text-foreground pb-16">
           <ThemeProvider>
+            <AppContextProvider>
+              <Toaster />
               <TooltipProvider>      
                 {children}
               <ToastContainer />   
             </TooltipProvider> 
+            </AppContextProvider>
           </ThemeProvider>          
         </div> 
       </body>

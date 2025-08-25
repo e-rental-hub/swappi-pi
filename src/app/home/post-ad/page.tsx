@@ -13,12 +13,12 @@ import { TradeModeEnum } from "@/types/TradeModeEnum";
 
 export default function PostAd() {
   const { toast } = useToast();
-  const { currentUser,  } = useContext(AppContext);
+  const { currentUser  } = useContext(AppContext);
   const [adType, setAdType] = useState("Sell");
   const [priceType, setPriceType] = useState("Fixed");
   const [loading, setLoading] = useState(true);
 
-  if (loading) {
+  if (!currentUser) {
     return <div className="text-center p-4">Loading..</div>;
   }
   

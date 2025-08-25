@@ -22,7 +22,7 @@ export const configureLogger = () => {
       if (errorArg) {
         // If an Error object is found, send it directly to Sentry
         // This ensures we preserve the stack trace and error metadata
-        logToSentry(errorArg);
+        // logToSentry(errorArg);
       } else {
         // Fallback and stringify all other args
         const combinedMessage = args
